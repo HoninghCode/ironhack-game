@@ -34,4 +34,4 @@ class Player {
   }
 }
 
-console.log(this.game.ctx.arc);
+// console.log(player.this.x);

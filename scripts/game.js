@@ -18,16 +18,36 @@ class Game {
         const code = event.code;
         switch (code) {
           case 'ArrowUp':
-            this.player.y -= 5;
+            if (this.player.y < -339) {
+              return 0;
+            } else {
+              this.player.y -= 5;
+            }
+            // console.log(this.player.y);
             break;
           case 'ArrowDown':
-            this.player.y += 5;
+            if (this.player.y > 339) {
+              return 0;
+            } else {
+              this.player.y += 5;
+            }
+            // console.log(this.player.y);
             break;
           case 'ArrowRight':
-            this.player.x += 5;
+            if (this.player.x > 214) {
+              return 0;
+            } else {
+              this.player.x += 5;
+            }
+            // console.log(this.player.x);
             break;
           case 'ArrowLeft':
-            this.player.x -= 5;
+            if (this.player.x < -214) {
+              return 0;
+            } else {
+              this.player.x -= 5;
+            }
+            // console.log(this.player.x);
             break;
           case 'Space':
             this.fireSpell();
@@ -50,5 +70,6 @@ class Game {
   draw() {
     this.ctx.clearRect(0, 0, 500, 750);
     this.player.draw();
+    // console.log(this.player.x);
   }
 }
