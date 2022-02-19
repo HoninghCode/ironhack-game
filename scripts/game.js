@@ -18,16 +18,16 @@ class Game {
         const code = event.code;
         switch (code) {
           case 'ArrowUp':
-            this.player.y -= 10;
+            this.player.y -= 5;
             break;
           case 'ArrowDown':
-            this.player.y += 10;
+            this.player.y += 5;
             break;
           case 'ArrowRight':
-            this.player.x += 10;
+            this.player.x += 5;
             break;
           case 'ArrowLeft':
-            this.player.x -= 10;
+            this.player.x -= 5;
             break;
           case 'Space':
             this.fireSpell();
