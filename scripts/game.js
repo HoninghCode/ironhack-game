@@ -49,7 +49,6 @@ class Game {
 
   draw() {
     this.ctx.clearRect(0, 0, 500, 750);
-
     this.player.draw();
   }
 }

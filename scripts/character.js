@@ -33,3 +33,5 @@ class Player {
     this.speed++;
   }
 }
+
+console.log(this.game.ctx.arc);
