@@ -8,7 +8,10 @@ class Game {
   start() {
     this.running = true;
     this.player = new Player(this);
+    this.balloon = new Balloon(this);
     this.loop();
+    console.log(this.player.stingerX);
+    console.log(this.player.stingerX + (this.player.witdhHalf + this.player.x));
   }
 
   enableControls() {
@@ -60,7 +63,7 @@ class Game {
   loop() {
     window.requestAnimationFrame(() => {
       this.draw();
-      this.player.update();
+      // this.player.update();
       if (this.running) {
         this.loop();
       }
@@ -69,7 +72,9 @@ class Game {
 
   draw() {
     this.ctx.clearRect(0, 0, 500, 750);
+    this.balloon.drawBalloon();
     this.player.draw();
+    this.player.stinger();
     // console.log(this.player.x);
   }
 }
