@@ -8,27 +8,18 @@ class Player {
     this.y = -25;
     this.width = 50;
     this.height = 50;
-    this.frame = 1;
+    // this.frame = 1;
     this.witdhHalf = 500 / 2;
     this.heightHalf = 750 / 2;
+    this.angle = (Math.PI * 2) / 360;
+    this.speed = 2;
   }
 
   draw() {
     this.frame++;
     this.game.ctx.save();
-    // In a method of the game class,
-    // "this" refers to the instance
-    // of the game class on which
-    // the method is being called
-    // this.game.ctx.fillStyle = 'blue';
-    // Draw a blue square on the canvas
-    // this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
-    //     this.game.ctx.arc(10, 10, 5, 0, 2 * Math.PI);
-    // this.game.ctx.fillStyle = 'red';
-    // this.game.ctx.fill();
-
     this.game.ctx.translate(this.witdhHalf, this.heightHalf);
-    this.game.ctx.rotate(45 * ((Math.PI * 2) / 360));
+    this.game.ctx.rotate(this.speed * this.angle);
     this.game.ctx.fillStyle = 'blue';
     this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
     this.game.ctx.beginPath();
@@ -37,5 +28,9 @@ class Player {
     this.game.ctx.fill();
     this.game.ctx.closePath();
     this.game.ctx.restore();
+  }
+
+  update() {
+    this.speed++;
   }
 }

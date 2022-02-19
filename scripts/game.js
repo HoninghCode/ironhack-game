@@ -18,23 +18,18 @@ class Game {
         const code = event.code;
         switch (code) {
           case 'ArrowUp':
-            event.preventDefault();
             this.player.y -= 10;
             break;
           case 'ArrowDown':
-            event.preventDefault();
             this.player.y += 10;
             break;
           case 'ArrowRight':
-            event.preventDefault();
             this.player.x += 10;
             break;
           case 'ArrowLeft':
-            event.preventDefault();
             this.player.x -= 10;
             break;
           case 'Space':
-            event.preventDefault();
             this.fireSpell();
             break;
         }
@@ -45,6 +40,7 @@ class Game {
   loop() {
     window.requestAnimationFrame(() => {
       this.draw();
+      this.player.update();
       if (this.running) {
         this.loop();
       }
@@ -53,6 +49,7 @@ class Game {
 
   draw() {
     this.ctx.clearRect(0, 0, 500, 750);
+
     this.player.draw();
   }
 }
