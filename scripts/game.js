@@ -72,12 +72,34 @@ class Game {
   }
 
   runLogic() {
+    // console.log(
+    //   `stinger: ` + this.player.x,
+    //   `wasp: ` + this.player.x,
+    //   `balloon: ` + this.balloon.x
+    // );
+
+    let centerBalloon = this.player.x - this.balloon.x;
+    let centerPlayer = this.player.y - this.balloon.y;
+    let distance = Math.sqrt(
+      centerBalloon * centerBalloon + centerPlayer * centerPlayer
+    );
+    let sumOfRadius = this.player.radiusWasp + this.balloon.radius;
+
+    if (distance < sumOfRadius) {
+      console.log(`it collides`);
+    }
+
+    console.log(centerBalloon, centerPlayer, distance, sumOfRadius);
+
+    // console.log(`wasp: ` + this.player.x);
+    // console.log(`balloon: ` + this.balloon.x);
+
     // console.log('this is called');
 
     // for (let balloon = 0; balloon < this.player.width; balloon++) {
-    if (this.player.x > this.balloon.x) {
-      console.log('loop is called');
-    }
+    // if (this.player.x > this.balloon.x) {
+    //   console.log('loop is called');
+    // }
     // }
   }
 
