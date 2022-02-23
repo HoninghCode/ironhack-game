@@ -6,7 +6,7 @@ class Stinger {
     this.xx = 0;
     this.yy = 0;
     this.radius = 10;
-    this.speed = 1;
+    this.speed = 0.05;
     this.angle = (5 * (Math.PI * 2)) / 360;
     this.circle = this.speed + this.radius;
   }
@@ -23,6 +23,12 @@ class Stinger {
   }
 
   update() {
-    this.speed++;
+    this.angle++;
+
+    this.xOfRedDot =
+      this.xx + this.radius * Math.cos(this.angle * (Math.PI / 180));
+    this.yOfRedDot =
+      this.yy + this.radius * Math.sin(this.angle * (Math.PI / 180));
+    // console.log(xOfRedDot, yOfRedDot);
   }
 }

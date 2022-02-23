@@ -85,21 +85,23 @@ class Game {
     //   this.balloon.color = 'green';
     // }
 
-    let centerBalloonStinger =
-      this.stinger.xx + this.stinger.x - this.balloon.x;
-    let centerPlayerStinger = this.stinger.yy + this.stinger.y - this.balloon.y;
-    let distanceStinger = Math.sqrt(
-      centerBalloonStinger * centerBalloonStinger +
-        centerPlayerStinger * centerPlayerStinger
-    );
-    let sumOfRadiusStinger = this.stinger.radius + this.balloon.radius;
-    if (distanceStinger < sumOfRadiusStinger) {
-      // console.log(`lightgreen hits the green circle`);
-      console.log('it hits');
-      this.balloon.color = 'red';
-    } else {
-      this.balloon.color = 'green';
-    }
+    // let centerBalloonStinger =
+    //   this.stinger.xx + this.stinger.x - this.balloon.x;
+    // let centerStinger = this.stinger.yy + this.stinger.y - this.balloon.y;
+    // let distanceStinger = Math.sqrt(
+    //   centerBalloonStinger * centerBalloonStinger +
+    //     centerStinger * centerStinger
+    // );
+    // let sumOfRadiusStinger = this.stinger.radius + this.balloon.radius;
+    // if (distanceStinger < sumOfRadiusStinger) {
+    //   // console.log(`lightgreen hits the green circle`);
+    //   console.log('it hits');
+    //   this.balloon.color = 'red';
+    // } else {
+    //   this.balloon.color = 'green';
+    // }
+
+    // console.log(centerBalloonStinger, centerStinger);
 
     // console.log(Math.atan2(this.stinger.x, this.stinger.y));
     // console.log(this.player.endAngle);
@@ -108,7 +110,7 @@ class Game {
   draw() {
     this.ctx.clearRect(0, 0, 500, 750);
     this.balloon.draw();
-    this.player.draw();
+    // this.player.draw();
     this.stinger.draw();
   }
 }
