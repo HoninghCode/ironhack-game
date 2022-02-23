@@ -2,11 +2,13 @@ class Game {
   constructor(canvasElement) {
     this.canvas = canvasElement;
     this.ctx = canvasElement.getContext('2d');
+    this.gradiant = this.ctx.createLinearGradient(45, 45, 10, 52);
     this.enableControls();
   }
 
   start() {
     this.running = true;
+    this.stinger = new Stinger(this);
     this.player = new Player(this);
     this.balloon = new Balloon(this);
     this.loop();
@@ -21,40 +23,37 @@ class Game {
         const code = event.code;
         switch (code) {
           case 'ArrowUp':
-            if (this.player.y < -339) {
+            if (this.player.y < 34) {
               return 0;
             } else {
               this.player.y -= 5;
+              this.stinger.yy -= 5;
             }
-            // console.log(this.player.y);
             break;
           case 'ArrowDown':
-            if (this.player.y > 339) {
+            if (this.player.y > 714) {
               return 0;
             } else {
               this.player.y += 5;
+              this.stinger.yy += 5;
             }
-            // console.log(this.player.y);
             break;
           case 'ArrowRight':
-            if (this.player.x > 214) {
+            if (this.player.x > 464) {
               return 0;
             } else {
               this.player.x += 5;
+              this.stinger.xx += 5;
             }
-            // console.log(this.player.x);
             break;
           case 'ArrowLeft':
-            if (this.player.x < -214) {
+            if (this.player.x < 34) {
               return 0;
             } else {
               this.player.x -= 5;
+              this.stinger.xx -= 5;
             }
-            // console.log(this.player.x);
             break;
-          // case 'Space':
-          //   this.fireSpell();
-          //   break;
         }
       }
     });
@@ -64,6 +63,7 @@ class Game {
     window.requestAnimationFrame(() => {
       this.runLogic();
       this.draw();
+      this.stinger.update();
       this.player.update();
       if (this.running) {
         this.loop();
@@ -72,62 +72,43 @@ class Game {
   }
 
   runLogic() {
-    // console.log(
-    //   `stinger: ` + this.player.x,
-    //   `wasp: ` + this.player.x,
-    //   `balloon: ` + this.balloon.x
+    // let centerBalloon = this.player.x - this.balloon.x;
+    // let centerPlayer = this.player.y - this.balloon.y;
+    // let distance = Math.sqrt(
+    //   centerBalloon * centerBalloon + centerPlayer * centerPlayer
     // );
+    // let sumOfRadius = this.player.radiusWasp + this.balloon.radius;
+    // if (distance < sumOfRadius) {
+    //   // console.log(`lightgreen hits the green circle`);
+    //   this.balloon.color = 'blue';
+    // } else {
+    //   this.balloon.color = 'green';
+    // }
 
-    let centerBalloon = this.player.x - this.balloon.x;
-    let centerPlayer = this.player.y - this.balloon.y;
-    let distance = Math.sqrt(
-      centerBalloon * centerBalloon + centerPlayer * centerPlayer
+    let centerBalloonStinger =
+      this.stinger.xx + this.stinger.x - this.balloon.x;
+    let centerPlayerStinger = this.stinger.yy + this.stinger.y - this.balloon.y;
+    let distanceStinger = Math.sqrt(
+      centerBalloonStinger * centerBalloonStinger +
+        centerPlayerStinger * centerPlayerStinger
     );
-    let sumOfRadius = this.player.radiusWasp + this.balloon.radius;
-
-    if (distance < sumOfRadius) {
-      console.log(`it collides`);
+    let sumOfRadiusStinger = this.stinger.radius + this.balloon.radius;
+    if (distanceStinger < sumOfRadiusStinger) {
+      // console.log(`lightgreen hits the green circle`);
+      console.log('it hits');
+      this.balloon.color = 'red';
+    } else {
+      this.balloon.color = 'green';
     }
 
-    console.log(centerBalloon, centerPlayer, distance, sumOfRadius);
-
-    // console.log(`wasp: ` + this.player.x);
-    // console.log(`balloon: ` + this.balloon.x);
-
-    // console.log('this is called');
-
-    // for (let balloon = 0; balloon < this.player.width; balloon++) {
-    // if (this.player.x > this.balloon.x) {
-    //   console.log('loop is called');
-    // }
-    // }
+    // console.log(Math.atan2(this.stinger.x, this.stinger.y));
+    // console.log(this.player.endAngle);
   }
-
-  // balloon.runLogic()
-  // }
-
-  // runLogic() {
-  //   console.log('this is called');
-  //   // for (const balloon of this.balloon) {
-  //   //   balloon.runLogic();
-  //     const balloonAndPlayerAreIntersecting = balloon.checkIntersection(
-  //       this.player
-  //     );
-  //     const balloonIsOutOfBounds = this.balloon.x + this.balloon.width < 0;
-  //     if (balloonAndPlayerAreIntersecting || balloonIsOutOfBounds) {
-  //       // const indexOfEnemy = this.balloon.indexOf(balloon);
-  //       // this.enemies.splice(indexOfEnemy, 1);
-  //       // this.score -= 10;
-  //       console.log('they hit me');
-  //     }
-  //   // }
-  // }
 
   draw() {
     this.ctx.clearRect(0, 0, 500, 750);
     this.balloon.draw();
     this.player.draw();
-    this.player.stinger();
-    // console.log(this.player.x);
+    this.stinger.draw();
   }
 }

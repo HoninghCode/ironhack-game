@@ -6,6 +6,7 @@ class Balloon {
     this.radius = 100;
     this.x = 200;
     this.y = 200;
+    this.color = 'green';
     // this.speed = speed;
   }
 
@@ -33,7 +34,7 @@ class Balloon {
     // this.game.ctx.rotate(this.speed * this.angle);
     this.game.ctx.beginPath();
     this.game.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-    this.game.ctx.fillStyle = 'green';
+    this.game.ctx.fillStyle = this.color;
     this.game.ctx.fill();
     this.game.ctx.closePath();
     this.game.ctx.restore();
