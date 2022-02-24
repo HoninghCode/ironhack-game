@@ -85,26 +85,22 @@ class Game {
     //   this.balloon.color = 'green';
     // }
 
-    // let centerBalloonStinger =
-    //   this.stinger.xx + this.stinger.x - this.balloon.x;
-    // let centerStinger = this.stinger.yy + this.stinger.y - this.balloon.y;
-    // let distanceStinger = Math.sqrt(
-    //   centerBalloonStinger * centerBalloonStinger +
-    //     centerStinger * centerStinger
-    // );
-    // let sumOfRadiusStinger = this.stinger.radius + this.balloon.radius;
-    // if (distanceStinger < sumOfRadiusStinger) {
-    //   // console.log(`lightgreen hits the green circle`);
-    //   console.log('it hits');
-    //   this.balloon.color = 'red';
-    // } else {
-    //   this.balloon.color = 'green';
-    // }
+    let centerBalloon =
+      this.stinger.xOfRedDot - this.balloon.x + this.stinger.xx;
+    let centerPlayer =
+      this.stinger.yOfRedDot - this.balloon.y + this.stinger.yy;
+    let distance = Math.sqrt(
+      centerBalloon * centerBalloon + centerPlayer * centerPlayer
+    );
+    let sumOfRadius = this.balloon.radius;
+    if (distance < sumOfRadius) {
+      console.log('hit');
+      this.balloon.color = 'blue';
+    } else {
+      this.balloon.color = 'green';
+    }
 
-    // console.log(centerBalloonStinger, centerStinger);
-
-    // console.log(Math.atan2(this.stinger.x, this.stinger.y));
-    // console.log(this.player.endAngle);
+    console.log(distance, sumOfRadius);
   }
 
   draw() {
