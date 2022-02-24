@@ -3,8 +3,8 @@ class Stinger {
     this.game = gameInstance;
     this.x = 26;
     this.y = -26;
-    this.xx = 0;
-    this.yy = 0;
+    this.xx = 250;
+    this.yy = 500;
     this.radius = 10;
     this.speed = 0.01;
     this.angle = (Math.PI * 2) / 360;

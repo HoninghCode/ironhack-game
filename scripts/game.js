@@ -23,7 +23,7 @@ class Game {
         const code = event.code;
         switch (code) {
           case 'ArrowUp':
-            if (this.player.y < 34) {
+            if (this.player.y < -460) {
               return 0;
             } else {
               this.player.y -= 5;
@@ -31,7 +31,7 @@ class Game {
             }
             break;
           case 'ArrowDown':
-            if (this.player.y > 714) {
+            if (this.player.y > 710) {
               return 0;
             } else {
               this.player.y += 5;
@@ -39,7 +39,7 @@ class Game {
             }
             break;
           case 'ArrowRight':
-            if (this.player.x > 464) {
+            if (this.player.x > 460) {
               return 0;
             } else {
               this.player.x += 5;
@@ -47,7 +47,7 @@ class Game {
             }
             break;
           case 'ArrowLeft':
-            if (this.player.x < 34) {
+            if (this.player.x < 40) {
               return 0;
             } else {
               this.player.x -= 5;
@@ -106,7 +106,7 @@ class Game {
   draw() {
     this.ctx.clearRect(0, 0, 500, 750);
     this.balloon.draw();
-    // this.player.draw();
+    this.player.draw();
     this.stinger.draw();
   }
 }

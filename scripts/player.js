@@ -4,12 +4,10 @@
 class Player {
   constructor(gameInstance) {
     this.game = gameInstance;
-    this.x = 0;
-    this.y = 0;
+    this.x = 250;
+    this.y = 500;
     this.width = 50;
     this.height = 50;
-    this.witdhHalf = 0;
-    this.heightHalf = 0;
     this.angle = (5 * (Math.PI * 2)) / 360;
     this.speed = 1;
     this.radiusWasp = 35;
@@ -19,7 +17,7 @@ class Player {
 
   draw() {
     this.game.ctx.save();
-    this.game.ctx.translate(this.witdhHalf + this.x, this.heightHalf + this.y);
+    this.game.ctx.translate(this.x, this.y);
     this.game.ctx.rotate(this.speed * this.angle);
     this.game.ctx.beginPath();
     this.game.ctx.arc(0, 0, this.radiusWasp, this.startAngle, this.endAngle);

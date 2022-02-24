@@ -4,8 +4,8 @@ class Balloon {
     // this.width = 100;
     // this.heigth = 100;
     this.radius = 100;
-    this.x = 200;
-    this.y = 200;
+    this.x = 250;
+    this.y = 150;
     this.color = 'green';
     // this.speed = speed;
   }
