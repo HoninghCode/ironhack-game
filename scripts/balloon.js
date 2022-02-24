@@ -1,32 +1,11 @@
 class Balloon {
   constructor(gameInstance) {
     this.game = gameInstance;
-    // this.width = 100;
-    // this.heigth = 100;
     this.radius = 100;
     this.x = 250;
     this.y = 150;
     this.color = 'green';
-    // this.speed = speed;
   }
-
-  //   checkIntersection(element) {
-  //     // We'll use this to check for intersections between player and enemy and spell and enemy
-  //     return (
-  //       // is right edge of element in front of left edge of enemy
-  //       element.x + element.width > this.x &&
-  //       // is left edge of element before of right edge of enemy
-  //       element.x < this.x + this.width &&
-  //       // is bottom edge of element below top edge of enemy
-  //       element.y + element.height > this.y &&
-  //       // is top edge of element above bottom edge of enemy
-  //       element.y < this.y + this.height
-  //     );
-  //   }
-
-  //   runLogic() {
-  //     this.x -= this.speed;
-  //   }
 
   draw() {
     this.game.ctx.save();
@@ -38,6 +17,5 @@ class Balloon {
     this.game.ctx.fill();
     this.game.ctx.closePath();
     this.game.ctx.restore();
-    // console.log(`balloon: ` + this.x, this.y);
   }
 }

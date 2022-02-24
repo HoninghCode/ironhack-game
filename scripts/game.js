@@ -2,7 +2,7 @@ class Game {
   constructor(canvasElement) {
     this.canvas = canvasElement;
     this.ctx = canvasElement.getContext('2d');
-    this.gradiant = this.ctx.createLinearGradient(45, 45, 10, 52);
+    this.gradiant = this.ctx.createRadialGradient(45, 45, 10, 52, 50, 30);
     this.enableControls();
   }
 
@@ -95,12 +95,10 @@ class Game {
     let sumOfRadius = this.balloon.radius;
     if (distance < sumOfRadius) {
       console.log('hit');
-      this.balloon.color = 'blue';
+      this.balloon.color = 'red';
     } else {
       this.balloon.color = 'green';
     }
-
-    console.log(distance, sumOfRadius);
   }
 
   draw() {
