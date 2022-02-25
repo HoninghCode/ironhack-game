@@ -65,6 +65,7 @@ class Game {
       this.draw();
       this.stinger.update();
       this.player.update();
+      this.balloon.update();
       if (this.running) {
         this.loop();
       }
@@ -72,18 +73,38 @@ class Game {
   }
 
   runLogic() {
-    // let centerBalloon = this.player.x - this.balloon.x;
-    // let centerPlayer = this.player.y - this.balloon.y;
-    // let distance = Math.sqrt(
-    //   centerBalloon * centerBalloon + centerPlayer * centerPlayer
-    // );
-    // let sumOfRadius = this.player.radiusWasp + this.balloon.radius;
-    // if (distance < sumOfRadius) {
-    //   // console.log(`lightgreen hits the green circle`);
-    //   this.balloon.color = 'blue';
-    // } else {
-    //   this.balloon.color = 'green';
+    let centerBalloonExtra = this.player.x - this.balloon.x;
+    let centerPlayerExtra = this.player.y - this.balloon.y;
+    let distanceExtra = Math.sqrt(
+      centerBalloonExtra * centerBalloonExtra +
+        centerPlayerExtra * centerPlayerExtra
+    );
+    let sumOfRadiusExtra = this.player.radiusWasp + this.balloon.radius;
+    if (distanceExtra < sumOfRadiusExtra) {
+      // console.log(`lightgreen hits the green circle`);
+      this.balloon.dx = -this.balloon.dx;
+      this.balloon.dy = -this.balloon.dy;
+    }
+
+    // if (this.balloon.y + this.balloon.dy < 0) {
+    //   this.balloon.dy = -this.balloon.dy;
     // }
+
+    if (
+      this.balloon.x + this.balloon.dx > 500 - this.balloon.radius ||
+      this.balloon.x + this.balloon.dx < 0 + this.balloon.radius
+    ) {
+      this.balloon.dx = -this.balloon.dx;
+    }
+
+    if (
+      this.balloon.y + this.balloon.dy > 750 - this.balloon.radius ||
+      this.balloon.y + this.balloon.dy < 0 + this.balloon.radius
+    ) {
+      this.balloon.dy = -this.balloon.dy;
+    }
+
+    // console.log(this.ctx.width, this.ctx.height);
 
     let centerBalloon =
       this.stinger.xOfRedDot - this.balloon.x + this.stinger.xx;
@@ -94,10 +115,8 @@ class Game {
     );
     let sumOfRadius = this.balloon.radius;
     if (distance < sumOfRadius) {
-      console.log('hit');
+      // console.log('hit');
       this.balloon.color = 'red';
-    } else {
-      this.balloon.color = 'green';
     }
   }
 

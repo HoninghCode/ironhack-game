@@ -1,8 +1,8 @@
 class Stinger {
   constructor(gameInstance) {
     this.game = gameInstance;
-    this.x = 26;
-    this.y = -26;
+    this.x = 35;
+    this.y = -35;
     this.xx = 250;
     this.yy = 500;
     this.radius = 10;

@@ -5,6 +5,8 @@ class Balloon {
     this.x = 250;
     this.y = 150;
     this.color = 'green';
+    this.dx = 1;
+    this.dy = -2;
   }
 
   draw() {
@@ -17,5 +19,12 @@ class Balloon {
     this.game.ctx.fill();
     this.game.ctx.closePath();
     this.game.ctx.restore();
+  }
+
+  update() {
+    this.x += this.dx;
+    this.y += this.dy;
+
+    console.log(this.x, this.y)
   }
 }
