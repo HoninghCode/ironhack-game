@@ -97,11 +97,12 @@ class Game {
       this.balloon.dx = -this.balloon.dx;
     }
 
-    if (
-      this.balloon.y + this.balloon.dy > 750 - this.balloon.radius ||
-      this.balloon.y + this.balloon.dy < 0 + this.balloon.radius
-    ) {
+    if (this.balloon.y + this.balloon.dy < 0 + this.balloon.radius) {
       this.balloon.dy = -this.balloon.dy;
+    }
+
+    if (this.balloon.y + this.balloon.dy > 750 - this.balloon.radius) {
+      console.log('game over, bottom hit');
     }
 
     // console.log(this.ctx.width, this.ctx.height);
@@ -115,7 +116,7 @@ class Game {
     );
     let sumOfRadius = this.balloon.radius;
     if (distance < sumOfRadius) {
-      // console.log('hit');
+      console.log('game over, red dot hit');
       this.balloon.color = 'red';
     }
   }
