@@ -7,7 +7,7 @@ class Stinger {
     this.yy = 500;
     this.radius = 10;
     this.speed = 0.01;
-    this.angle = (Math.PI * 2) / 360;
+    this.angle = Math.PI / 180;
   }
 
   draw() {
