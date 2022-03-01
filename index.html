@@ -8,7 +8,16 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <canvas id="my-game" width="500" height="750"></canvas>
+    <div class="screen" id="start-screen">
+      <button>Start Game</button>
+    </div>
+    <div class="screen" id="playing-screen" style="display: none">
+      <canvas id="my-game" width="500" height="750"></canvas>
+    </div>
+    <div class="screen" id="game-over-screen" style="display: none">
+      <button>Try Again</button>
+    </div>
+
     <script src="scripts/player.js"></script>
     <script src="scripts/stinger.js"></script>
     <script src="scripts/balloon.js"></script>

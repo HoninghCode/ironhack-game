@@ -1,7 +1,7 @@
 class Balloon {
   constructor(gameInstance) {
     this.game = gameInstance;
-    this.radius = 60;
+    this.radius = 65;
     this.x = 250;
     this.y = 150;
     this.color = 'green';
@@ -25,6 +25,6 @@ class Balloon {
     this.x += this.dx;
     this.y += this.dy;
 
-    console.log(this.x, this.y);
+    // console.log(this.x, this.y);
   }
 }

@@ -8,9 +8,9 @@ class Player {
     this.y = 500;
     this.width = 50;
     this.height = 50;
-    this.speed = -0.02;
-    this.angle = (Math.PI * 2) / 360;
-    this.radiusWasp = 35;
+    this.speed = -0.0175;
+    this.angle = Math.PI / 360; // 1 degrees
+    this.radius = 35;
     this.startAngle = 0;
     this.endAngle = 2 * Math.PI;
   }
@@ -18,11 +18,11 @@ class Player {
   draw() {
     this.game.ctx.save();
     this.game.ctx.translate(this.x, this.y);
-    this.game.ctx.rotate(this.angle);
+    this.game.ctx.rotate(this.angle * this.speed);
     this.game.ctx.beginPath();
-    this.game.ctx.arc(0, 0, this.radiusWasp, this.startAngle, this.endAngle);
-    this.game.gradiant.addColorStop(0, '#A7D30C');
-    this.game.gradiant.addColorStop(0.9, 'yellow');
+    this.game.ctx.arc(0, 0, this.radius, this.startAngle, this.endAngle);
+    // this.game.gradiant.addColorStop(0, 'black');
+    // this.game.gradiant.addColorStop(0.9, 'yellow');
     this.game.gradiant.addColorStop(1, 'blue');
     this.game.ctx.fillStyle = this.game.gradiant;
     this.game.ctx.fill();
@@ -32,9 +32,7 @@ class Player {
   }
 
   update() {
-    // this.angle++;
-    // this.xOfRedDot = this.x * Math.cos(this.angle * (Math.PI / 180));
-    // this.yOfRedDot = this.y * Math.sin(this.angle * (Math.PI / 180));
+    this.angle++;
   }
 }
 // console.log(this.stingerX + (this.witdhHalf + this.x));
