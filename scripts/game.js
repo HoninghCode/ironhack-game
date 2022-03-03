@@ -101,12 +101,18 @@ class Game {
   }
 
   drawText() {
-    this.ctx.font = '30px VT323, monospace;';
+    this.ctx.font = '20px VT323, monospace';
     this.ctx.fillText(
       `Score: ${this.timePassed}  Speed: ${this.stinger.speed}x`,
       10,
       730
     );
+    this.ctx.beginPath();
+    this.ctx.lineTo(0, 745);
+    this.ctx.lineTo(500, 745);
+    this.ctx.strokeStyle = 'red';
+    this.ctx.lineWidth = 10;
+    this.ctx.stroke();
   }
 
   draw() {
