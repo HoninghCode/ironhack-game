@@ -20,5 +20,5 @@ startButton.addEventListener('click', () => {
 });
 
 tryAgainButton.addEventListener('click', () => {
-  game.start();
+  game.start(0);
 });

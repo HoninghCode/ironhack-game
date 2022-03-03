@@ -5,20 +5,19 @@ class Game {
     this.gradiant = this.ctx.createLinearGradient(45, 45, 10, 52, 50, 30);
     this.screens = screens;
     this.running = false;
+    // this.startTime = this.startTime;
     this.enableControls();
   }
 
   start() {
-    // this.startTime = Date.now();
-    // this.timePassed = 0;
+    this.startTime = Date.now();
     this.running = true;
     this.stinger = new Stinger(this);
     this.player = new Player(this);
     this.balloon = new Balloon(this);
+    // this.stinger.interval();
     this.displayScreen('playing');
     this.loop();
-    // console.log(this.player.stingerX);
-    // console.log(this.player.stingerX + (this.player.witdhHalf + this.player.x));
   }
 
   displayScreen(name) {
@@ -29,7 +28,7 @@ class Game {
   }
 
   lose() {
-    // this.running = true;
+    this.running = false;
     this.displayScreen('end');
   }
 
@@ -76,73 +75,38 @@ class Game {
     });
   }
 
-  loop() {
-    window.requestAnimationFrame(() => {
-      this.runLogic();
+  update() {
+    this.timePassed = Math.floor((Date.now() - this.startTime) / 1000);
+  }
+
+  loop(timeStamp) {
+    window.requestAnimationFrame((timeStamp) => {
+      this.runLogic(timeStamp);
       this.draw();
+      // this.currentTime = Date.now();
       if (this.running) {
-        this.loop();
+        this.loop(timeStamp);
       }
     });
   }
 
-  runLogic() {
-    this.stinger.update();
+  runLogic(timeStamp) {
+    this.stinger.dieOnRedDot();
+    this.stinger.update(timeStamp);
+    this.player.bounceOnPlayer();
     this.player.update();
+    this.balloon.bounceOnWalls();
     this.balloon.update();
-    // this.timePassed = Date.now() - this.startTime;
-    // Collision detection logic written in game runLogic method
-    // should passed to a runLogic method either in player or balloon
-    let centerBalloonExtra = this.player.x - this.balloon.x;
-    let centerPlayerExtra = this.player.y - this.balloon.y;
-    let distanceExtra = Math.sqrt(
-      centerBalloonExtra * centerBalloonExtra +
-        centerPlayerExtra * centerPlayerExtra
+    // console.log(Math.floor((Date.now() - this.startTime) / 1000));
+  }
+
+  drawText() {
+    this.ctx.font = '30px VT323, monospace;';
+    this.ctx.fillText(
+      `Score: ${this.timePassed}  Speed: ${this.stinger.speed}x`,
+      10,
+      730
     );
-    let sumOfRadiusExtra = this.player.radius + this.balloon.radius;
-    if (distanceExtra < sumOfRadiusExtra) {
-      // console.log(`lightgreen hits the green circle`);
-      this.balloon.dx = -this.balloon.dx;
-      this.balloon.dy = -this.balloon.dy;
-    }
-
-    // if (this.balloon.y + this.balloon.dy < 0) {
-    //   this.balloon.dy = -this.balloon.dy;
-    // }
-
-    if (
-      this.balloon.x + this.balloon.dx > 500 - this.balloon.radius ||
-      this.balloon.x + this.balloon.dx < 0 + this.balloon.radius
-    ) {
-      this.balloon.dx = -this.balloon.dx;
-    }
-
-    if (this.balloon.y + this.balloon.dy < 0 + this.balloon.radius) {
-      this.balloon.dy = -this.balloon.dy;
-    }
-
-    if (this.balloon.y + this.balloon.dy > 750 - this.balloon.radius) {
-      this.displayScreen('end');
-      console.log('game over, bottom hit');
-    }
-
-    // console.log(this.ctx.width, this.ctx.height);
-
-    let centerBalloon =
-      this.stinger.xOfRedDot - this.balloon.x + this.stinger.xx;
-    let centerPlayer =
-      this.stinger.yOfRedDot - this.balloon.y + this.stinger.yy;
-    let distance = Math.sqrt(
-      centerBalloon * centerBalloon + centerPlayer * centerPlayer
-    );
-    let sumOfRadius = this.balloon.radius;
-    if (distance < sumOfRadius) {
-      // console.log('game over, red dot hit');
-      this.balloon.color = 'red';
-      this.displayScreen('end');
-    } else {
-      this.balloon.color = 'green';
-    }
   }
 
   draw() {
@@ -150,5 +114,8 @@ class Game {
     this.balloon.draw();
     this.player.draw();
     this.stinger.draw();
+    this.update();
+    this.drawText();
+    // console.log(this.timePassed);
   }
 }

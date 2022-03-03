@@ -21,6 +21,35 @@ class Balloon {
     this.game.ctx.restore();
   }
 
+  bounceOnWalls() {
+    if (
+      this.x + this.dx > 500 - this.radius ||
+      this.x + this.dx < 0 + this.radius
+    ) {
+      this.dx = -this.dx;
+    }
+
+    if (this.y + this.dy < 0 + this.radius) {
+      this.dy = -this.dy;
+    }
+
+    if (this.y + this.dy > 750 - this.radius) {
+      this.game.lose();
+    }
+
+    let centerBalloon =
+      this.game.stinger.xOfRedDot - this.x + this.game.stinger.xx;
+    let centerPlayer =
+      this.game.stinger.yOfRedDot - this.y + this.game.stinger.yy;
+    let distance = Math.sqrt(
+      centerBalloon * centerBalloon + centerPlayer * centerPlayer
+    );
+    let sumOfRadius = this.radius;
+    if (distance < sumOfRadius) {
+      this.game.lose();
+    }
+  }
+
   update() {
     this.x += this.dx;
     this.y += this.dy;

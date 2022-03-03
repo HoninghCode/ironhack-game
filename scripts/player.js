@@ -28,12 +28,23 @@ class Player {
     this.game.ctx.fill();
     this.game.ctx.closePath();
     this.game.ctx.restore();
-    // console.log(`wasp: ` + this.x, this.y);
+  }
+
+  bounceOnPlayer() {
+    let centerBalloonExtra = this.x - this.game.balloon.x;
+    let centerPlayerExtra = this.y - this.game.balloon.y;
+    let distanceExtra = Math.sqrt(
+      centerBalloonExtra * centerBalloonExtra +
+        centerPlayerExtra * centerPlayerExtra
+    );
+    let sumOfRadiusExtra = this.radius + this.game.balloon.radius;
+    if (distanceExtra < sumOfRadiusExtra) {
+      this.game.balloon.dx = -this.game.balloon.dx;
+      this.game.balloon.dy = -this.game.balloon.dy;
+    }
   }
 
   update() {
     this.angle++;
   }
 }
-// console.log(this.stingerX + (this.witdhHalf + this.x));
-// console.log(this.stingerY + (this.heightHalf + this.y));

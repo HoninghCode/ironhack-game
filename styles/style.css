@@ -6,6 +6,25 @@ canvas {
   background-color: lightyellow;
 }
 
+p {
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* p:first-child {
+  position: absolute;
+  left: 20px !important;
+  bottom: 0;
+} */
+
+p:last-child {
+  position: absolute;
+  left: 140px;
+  bottom: 0;
+}
+
 .screen {
   background-color: lightyellow;
   width: 500px;
@@ -14,4 +33,10 @@ canvas {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+button {
+  padding: 0;
+  border: none;
 }

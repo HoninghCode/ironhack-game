@@ -1,21 +1,19 @@
 class Stinger {
   constructor(gameInstance) {
     this.game = gameInstance;
+    this.lastTime = 0;
     this.x = 35;
     this.y = -35;
     this.xx = 250;
     this.yy = 500;
     this.radius = 10;
-    this.speed = 1; // 1 = 6 seconds
+    this.speed = 0; // 1 = 6 seconds
     this.angle = Math.PI / 360; // 1 degrees
-    // this.speed = 100;
   }
 
   draw() {
     this.game.ctx.save();
     this.game.ctx.translate(this.xx, this.yy);
-    // this.game.ctx.rotate(this.seconds + this.milliseconds);
-    // this.game.ctx.rotate(this.xOfRedDot, this.yOfRedDot);
     this.game.ctx.beginPath();
     this.game.ctx.arc(
       this.xOfRedDot,
@@ -27,24 +25,45 @@ class Stinger {
     this.game.ctx.fillStyle = 'red';
     this.game.ctx.fill();
     this.game.ctx.restore();
-
-    // console.log(this.angle);
   }
 
-  update() {
+  // interval() {
+  //   setInterval(function () {
+  //     return this.speed++;
+  //   }, 1000);
+  //   // console.log('speed: ' + this.speed);
+  //   console.log(this.speed);
+  // }
+
+  dieOnRedDot() {
+    let centerBalloon = this.xOfRedDot - this.game.balloon.x + this.xx;
+    let centerPlayer = this.yOfRedDot - this.game.balloon.y + this.yy;
+    let distance = Math.sqrt(
+      centerBalloon * centerBalloon + centerPlayer * centerPlayer
+    );
+    let sumOfRadius = this.game.balloon.radius;
+    if (distance < sumOfRadius) {
+      this.game.lose();
+    }
+  }
+
+  update(timeStamp) {
     this.angle++;
     this.xOfRedDot =
       this.x * Math.cos(this.angle * this.speed * (Math.PI / 180));
     this.yOfRedDot =
       this.y * Math.sin(this.angle * this.speed * (Math.PI / 180));
-    // this.time = new Date();
-    // this.seconds = ((2 * Math.PI) / 60) * this.time.getSeconds();
-    // this.milliseconds = ((2 * Math.PI) / 60000) * this.time.getMilliseconds();
 
-    // console.log(this.xOfRedDot, this.yOfRedDot);
+    if (!this.lastTime || timeStamp - this.lastTime >= 10 * 1000) {
+      this.lastTime = timeStamp;
+      this.speed++;
+      // console.log(this.speed);
+    }
 
-    // console.log(this.angle);
-
-    // console.log(this.xOfRedDot, this.yOfRedDot);
+    // setInterval(function () {
+    //   return this.speed++;
+    // }, 1000);
+    // console.log('speed: ' + this.speed);
+    // console.log(this.speed);
   }
 }
