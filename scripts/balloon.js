@@ -27,14 +27,17 @@ class Balloon {
       this.x + this.dx < 0 + this.radius
     ) {
       this.dx = -this.dx;
+      hitWallSound.play();
     }
 
     if (this.y + this.dy < 0 + this.radius) {
       this.dy = -this.dy;
+      hitWallSound.play();
     }
 
     if (this.y + this.dy > 750 - this.radius) {
       this.game.lose();
+      gameEndSound.play();
     }
 
     let centerBalloon =
@@ -47,6 +50,7 @@ class Balloon {
     let sumOfRadius = this.radius;
     if (distance < sumOfRadius) {
       this.game.lose();
+      gameEndSound.play();
     }
   }
 

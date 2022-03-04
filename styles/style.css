@@ -9,8 +9,10 @@ canvas {
 
 p {
   position: absolute;
-  left: 20px;
-  bottom: 0;
+  font-size: 50px;
+  width: 100%;
+  top: 300px;
+  text-align: center;
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -19,12 +21,6 @@ p {
   left: 20px !important;
   bottom: 0;
 } */
-
-p:last-child {
-  position: absolute;
-  left: 140px;
-  bottom: 0;
-}
 
 .screen {
   background-color: lightyellow;

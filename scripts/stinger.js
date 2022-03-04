@@ -44,6 +44,7 @@ class Stinger {
     let sumOfRadius = this.game.balloon.radius;
     if (distance < sumOfRadius) {
       this.game.lose();
+      gameEndSound.play();
     }
   }
 

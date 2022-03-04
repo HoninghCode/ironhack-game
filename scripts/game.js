@@ -1,3 +1,7 @@
+const hitWallSound = new Audio('/sounds/hitwallsound.wav');
+const hitBallSound = new Audio('/sounds/hitballsound.wav');
+const gameEndSound = new Audio('/sounds/gameendsound.wav');
+
 class Game {
   constructor(canvasElement, screens) {
     this.canvas = canvasElement;
@@ -77,6 +81,7 @@ class Game {
 
   update() {
     this.timePassed = Math.floor((Date.now() - this.startTime) / 1000);
+    document.getElementById('p1').innerHTML = `Score: ` + this.timePassed;
   }
 
   loop(timeStamp) {

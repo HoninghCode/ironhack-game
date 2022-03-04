@@ -41,6 +41,7 @@ class Player {
     if (distanceExtra < sumOfRadiusExtra) {
       this.game.balloon.dx = -this.game.balloon.dx;
       this.game.balloon.dy = -this.game.balloon.dy;
+      hitBallSound.play();
     }
   }
 
