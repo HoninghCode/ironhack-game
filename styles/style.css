@@ -16,24 +16,11 @@ p {
   font-family: 'Courier New', Courier, monospace;
 }
 
-/* p:first-child {
-  position: absolute;
-  left: 20px !important;
-  bottom: 0;
-} */
-
 .screen {
   background-color: lightyellow;
   width: 500px;
   height: 750px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-  /* position: relative; */
   border: solid 1px black;
-  /* margin: 0 auto; */
-
   margin: 0;
   position: absolute;
   top: 50%;
@@ -42,17 +29,8 @@ p {
   transform: translate(-50%, -50%);
 }
 
-/* .vertical-center {
-  position: absolute;
-  margin: 0;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-} */
-
 button {
   padding: 0;
   border: none;
   background-color: transparent;
-  /* border: solid 1px black; */
 }

@@ -11,8 +11,6 @@ class Balloon {
 
   draw() {
     this.game.ctx.save();
-    // this.game.ctx.translate(this.witdhHalf + this.x, this.heightHalf + this.y);
-    // this.game.ctx.rotate(this.speed * this.angle);
     this.game.ctx.beginPath();
     this.game.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     this.game.ctx.fillStyle = this.color;
@@ -57,7 +55,5 @@ class Balloon {
   update() {
     this.x += this.dx;
     this.y += this.dy;
-
-    // console.log(this.x, this.y);
   }
 }

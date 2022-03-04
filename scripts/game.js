@@ -9,7 +9,6 @@ class Game {
     this.gradiant = this.ctx.createLinearGradient(45, 45, 10, 52, 50, 30);
     this.screens = screens;
     this.running = false;
-    // this.startTime = this.startTime;
     this.enableControls();
   }
 
@@ -19,7 +18,6 @@ class Game {
     this.stinger = new Stinger(this);
     this.player = new Player(this);
     this.balloon = new Balloon(this);
-    // this.stinger.interval();
     this.displayScreen('playing');
     this.loop();
   }
@@ -88,7 +86,6 @@ class Game {
     window.requestAnimationFrame((timeStamp) => {
       this.runLogic(timeStamp);
       this.draw();
-      // this.currentTime = Date.now();
       if (this.running) {
         this.loop(timeStamp);
       }
@@ -102,7 +99,6 @@ class Game {
     this.player.update();
     this.balloon.bounceOnWalls();
     this.balloon.update();
-    // console.log(Math.floor((Date.now() - this.startTime) / 1000));
   }
 
   drawText() {
@@ -127,6 +123,5 @@ class Game {
     this.stinger.draw();
     this.update();
     this.drawText();
-    // console.log(this.timePassed);
   }
 }

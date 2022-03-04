@@ -27,14 +27,6 @@ class Stinger {
     this.game.ctx.restore();
   }
 
-  // interval() {
-  //   setInterval(function () {
-  //     return this.speed++;
-  //   }, 1000);
-  //   // console.log('speed: ' + this.speed);
-  //   console.log(this.speed);
-  // }
-
   dieOnRedDot() {
     let centerBalloon = this.xOfRedDot - this.game.balloon.x + this.xx;
     let centerPlayer = this.yOfRedDot - this.game.balloon.y + this.yy;
@@ -58,13 +50,6 @@ class Stinger {
     if (!this.lastTime || timeStamp - this.lastTime >= 10 * 1000) {
       this.lastTime = timeStamp;
       this.speed++;
-      // console.log(this.speed);
     }
-
-    // setInterval(function () {
-    //   return this.speed++;
-    // }, 1000);
-    // console.log('speed: ' + this.speed);
-    // console.log(this.speed);
   }
 }

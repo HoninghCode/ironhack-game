@@ -18,8 +18,6 @@ class Player {
     this.game.ctx.rotate(this.angle * this.speed);
     this.game.ctx.beginPath();
     this.game.ctx.arc(0, 0, this.radius, this.startAngle, this.endAngle);
-    // this.game.gradiant.addColorStop(0, 'black');
-    // this.game.gradiant.addColorStop(0.9, 'yellow');
     this.game.gradiant.addColorStop(1, 'blue');
     this.game.ctx.fillStyle = this.game.gradiant;
     this.game.ctx.fill();
@@ -35,9 +33,11 @@ class Player {
         centerPlayerExtra * centerPlayerExtra
     );
     let sumOfRadiusExtra = this.radius + this.game.balloon.radius;
-    if (distanceExtra < sumOfRadiusExtra) {
-      this.game.balloon.dx = -this.game.balloon.dx;
+    this.sumOfRadiusExtra = sumOfRadiusExtra;
+    this.distanceExtra = distanceExtra;
+    if (this.distanceExtra <= sumOfRadiusExtra) {
       this.game.balloon.dy = -this.game.balloon.dy;
+      this.game.balloon.dx = -this.game.balloon.dx;
       hitBallSound.play();
     }
   }
