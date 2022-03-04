@@ -1,6 +1,3 @@
-// const playerImage = new Image();
-// playerImage.src = '/player.png';
-
 class Player {
   constructor(gameInstance) {
     this.game = gameInstance;
